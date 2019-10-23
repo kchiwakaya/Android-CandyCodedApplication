@@ -1,14 +1,19 @@
 package com.pluralsight.candycoded;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 public class InfoActivity extends AppCompatActivity {
 
+    ImageView phone,Address;
+    TextView phone_num,address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,14 +25,45 @@ public class InfoActivity extends AppCompatActivity {
                 load(uri).
                 into(candyStoreImageView);
 
+        phone = (ImageView) findViewById(R.id.image_view_phone);
+        Address = (ImageView)findViewById(R.id.image_view_map);
+        phone_num = (TextView) findViewById(R.id.text_view_phone);
+        address =(TextView)findViewById(R.id.text_view_address);
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPhoneIntent();
+            }
+        });
+        address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMap();
+            }
+        });
+
 
     }
 
     // ***
     // TODO - Task 2 - Launch the Google Maps Activity
     // ***
+    public void openMap()
+    {
+        Uri uri = Uri.parse("geo:0,0?q=618+E+South+St+Orlando, FL");
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        startActivity(intent);
+    }
 
     // ***
     // TODO - Task 3 - Launch the Phone Activity
     // ***
+    public void createPhoneIntent()
+    {
+        String phone_Number="45";
+        Uri uri = Uri.parse("tel:"+phone_Number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
 }
