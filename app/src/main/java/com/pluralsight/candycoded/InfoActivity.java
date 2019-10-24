@@ -39,7 +39,7 @@ public class InfoActivity extends AppCompatActivity {
         address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMap();
+                createMapIntent();
             }
         });
 
@@ -49,11 +49,12 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     // TODO - Task 2 - Launch the Google Maps Activity
     // ***
-    public void openMap()
+    public void createMapIntent()
     {
-        Uri uri = Uri.parse("geo:0,0?q=618+E+South+St+Orlando, FL");
-        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);
+        //Uri uri = Uri.parse("geo:0,0?q=618+E+South+St+Orlando, FL");
+        Uri uri = Uri.parse("geo:22.1253,56.566");
+        Intent createMapIntent = new Intent(Intent.ACTION_VIEW,uri);
+        startActivity(createMapIntent);
     }
 
     // ***
