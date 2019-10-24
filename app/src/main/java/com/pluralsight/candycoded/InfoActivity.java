@@ -30,18 +30,18 @@ public class InfoActivity extends AppCompatActivity {
         phone_num = (TextView) findViewById(R.id.text_view_phone);
         address =(TextView)findViewById(R.id.text_view_address);
 
-        phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createPhoneIntent();
-            }
-        });
-        address.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createMapIntent();
-            }
-        });
+      phone_num.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              createPhoneIntent();
+          }
+      });
+      address.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              createMapIntent();
+          }
+      });
 
 
     }
@@ -51,9 +51,10 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     public void createMapIntent()
     {
-        //Uri uri = Uri.parse("geo:0,0?q=618+E+South+St+Orlando, FL");
+
         Uri uri = Uri.parse("geo:22.1253,56.566");
         Intent createMapIntent = new Intent(Intent.ACTION_VIEW,uri);
+        createMapIntent.setPackage("com.google.android.apps.maps");
         startActivity(createMapIntent);
     }
 
@@ -62,8 +63,8 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     public void createPhoneIntent()
     {
-        String phone_Number="45";
-        Uri uri = Uri.parse("tel:"+phone_Number);
+
+        Uri uri = Uri.parse("tel:"+phone_num.getText().toString());
         Intent intent = new Intent(Intent.ACTION_DIAL,uri);
         startActivity(intent);
     }
