@@ -49,23 +49,25 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     // TODO - Task 2 - Launch the Google Maps Activity
     // ***
-    public void createMapIntent()
-    {
 
-        Uri uri = Uri.parse("geo:22.1253,56.566");
-        Intent createMapIntent = new Intent(Intent.ACTION_VIEW,uri);
-        createMapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(createMapIntent);
+    public void createMapIntent(View view){
+        Uri uri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW,uri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if(mapIntent!= null){
+            mapIntent.resolveActivity(getPackageManager());
+            startActivity(mapIntent);
+        }
     }
 
     // ***
     // TODO - Task 3 - Launch the Phone Activity
     // ***
-    public void createPhoneIntent()
+    public void createPhoneIntent(View view)
     {
-
-        Uri uri = Uri.parse("tel:"+phone_num.getText().toString());
-        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        Uri uri = Uri.parse("tel:0123456789");
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(uri);
         startActivity(intent);
     }
 }
